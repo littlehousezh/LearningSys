@@ -4,7 +4,7 @@ This project is a small educational system for novice students to practice reali
 
 ## What the system does
 
-- Selects relatively easy SWE-bench tasks using an educational ranking heuristic.
+- Selects relatively easy tasks using an educational ranking heuristic.
 - Runs a shared four-step workflow:
   1. `Task Planner`
   2. `Patch Author`
