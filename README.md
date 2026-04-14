@@ -1,6 +1,6 @@
 # Learning Workflow Studio
 
-This project is a small educational system for novice students to practice realistic software-engineering workflows on simplified SWE-bench tasks.
+This project is a small educational system for novice students to practice realistic software-engineering workflows on simplified code repair tasks.
 
 ## What the system does
 
