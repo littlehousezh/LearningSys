@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgentForge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div id="study-hub-view" class="study-view">
+  <div class="launch-bg"></div>
+  <div class="study-shell">
+    <header class="study-header">
+      <p class="eyebrow">Novice SWE Practice</p>
+      <h1>AgentForge</h1>
+      <p>Learn how agents plan, code, review, and validate a fix by taking one role yourself.</p>
+    </header>
+
+    <section class="study-controls">
+      <div class="control-item">
+        <label for="hub-participant-name">Participant ID</label>
+        <input id="hub-participant-name" type="text" placeholder="e.g. student-01" />
+      </div>
+    </section>
+
+    <section id="hub-status-box" class="state-box" style="display:none"></section>
+
+    <section class="pack-content">
+      <div class="pack-summary">
+        <h2>How this practice mode works</h2>
+        <p>Each practice card pairs one workflow role with one curated <strong>BugsInPy</strong> <strong>tqdm</strong> repair task. You complete that role yourself while the system exposes the prompts, packets, and artifacts that move through the workflow.</p>
+        <p>The workflow order is <strong>Task Planner → Patch Author → Code Reviewer → Test Runner</strong>. The reviewer can send work back to the Patch Author for revision, and the tester can send it back only when the available evidence points to a real defect.</p>
+        <table class="task-table">
+          <thead><tr><th>Practice Step</th><th>Task</th><th>Focus</th><th>Difficulty</th></tr></thead>
+          <tbody>
+            <tr><td>Task Planner</td><td id="hub-task-id-1">Loading…</td><td id="hub-task-focus-1"></td><td id="hub-task-fit-1"></td></tr>
+            <tr><td>Patch Author</td><td id="hub-task-id-2">Loading…</td><td id="hub-task-focus-2"></td><td id="hub-task-fit-2"></td></tr>
+            <tr><td>Code Reviewer</td><td id="hub-task-id-3">Loading…</td><td id="hub-task-focus-3"></td><td id="hub-task-fit-3"></td></tr>
+            <tr><td>Test Runner</td><td id="hub-task-id-4">Loading…</td><td id="hub-task-focus-4"></td><td id="hub-task-fit-4"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ol class="task-list">
+        <li class="task-card" id="task-card-1">
+          <div class="task-card-head">
+            <h3>Practice Task Planning</h3>
+            <span class="task-status status-not-started">Your Step</span>
+          </div>
+          <p class="task-role">You replace the <strong>Task Planner</strong> agent.</p>
+          <p class="task-rationale">Learn how to turn an issue into a clear implementation path, likely root cause, and acceptance checks before code changes begin.</p>
+          <div class="task-actions">
+            <button type="button" class="launch-task-btn" id="hub-start-btn-1">Start Planning Practice</button>
+          </div>
+        </li>
+        <li class="task-card" id="task-card-2">
+          <div class="task-card-head">
+            <h3>Practice Patch Authoring</h3>
+            <span class="task-status status-not-started">Your Step</span>
+          </div>
+          <p class="task-role">You replace the <strong>Patch Author</strong> agent.</p>
+          <p class="task-rationale">Learn how to design a minimal, concrete fix from a plan and explain exactly what should change in the codebase.</p>
+          <div class="task-actions">
+            <button type="button" class="launch-task-btn" id="hub-start-btn-2">Start Coding Practice</button>
+          </div>
+        </li>
+        <li class="task-card" id="task-card-3">
+          <div class="task-card-head">
+            <h3>Practice Reviewing</h3>
+            <span class="task-status status-not-started">Your Step</span>
+          </div>
+          <p class="task-role">You replace the <strong>Code Reviewer</strong> agent.</p>
+          <p class="task-rationale">Learn how to judge whether a proposed fix is correct, testable, and safe enough to move forward.</p>
+          <div class="task-actions">
+            <button type="button" class="launch-task-btn" id="hub-start-btn-3">Start Review Practice</button>
+          </div>
+        </li>
+        <li class="task-card" id="task-card-4">
+          <div class="task-card-head">
+            <h3>Practice Testing</h3>
+            <span class="task-status status-not-started">Your Step</span>
+          </div>
+          <p class="task-role">You replace the <strong>Test Runner</strong> agent.</p>
+          <p class="task-rationale">Learn how to decide whether the workflow has enough evidence to call a fix done or loop back for more work.</p>
+          <div class="task-actions">
+            <button type="button" class="launch-task-btn" id="hub-start-btn-4">Start Testing Practice</button>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </div>
+</div>
+
+<div id="launch-view" class="launch-view" style="display:none">
+  <div class="launch-bg"></div>
+
+  <div class="header">
+    <h1>AgentForge</h1>
+    <button class="settings-button" id="btn-return-hub" title="Return to Study Hub">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div id="participant-banner" class="participant-banner">
+    <div class="participant-banner-main">
+      <div class="participant-banner-title" id="banner-title">Learning Workflow Session</div>
+      <div class="participant-banner-meta">
+        <span id="banner-issue-summary" class="participant-banner-summary"></span>
+      </div>
+    </div>
+      <div class="participant-banner-side">
+        <div class="participant-banner-links">
+          <a id="banner-repo-link" target="_blank" rel="noreferrer">Repo</a>
+          <a id="banner-issue-link-launch" target="_blank" rel="noreferrer">Issue</a>
+        </div>
+      </div>
+  </div>
+
+  <div class="content" id="workflow-content">
+    <div class="left-panel" id="workflow-left-panel">
+      <section class="workflow-board-panel">
+        <div class="workflow-board-head">
+          <div>
+            <div class="section-label">Workflow Map</div>
+            <div class="workflow-board-title">Agent activity and handoffs</div>
+          </div>
+          <div id="workflow-board-status" class="workflow-board-status">No workflow loaded</div>
+        </div>
+        <div id="workflow-board" class="workflow-board">
+          <div class="no-active-nodes">No workflow loaded</div>
+        </div>
+      </section>
+
+      <div class="input-area" id="input-area">
+        <div class="input-prompt-head">
+          <div id="input-role-title" class="input-role-title">Response Draft</div>
+          <div id="input-role-note" class="input-role-note">A role template will appear here so you can edit it or ask AI Coach to help draft it.</div>
+        </div>
+        <div id="response-context" class="response-context" style="display:none"></div>
+        <div class="input-shell" id="input-shell">
+          <textarea
+            id="task-input"
+            class="task-input"
+            placeholder="Respond when the workflow reaches your step."
+          ></textarea>
+          <div class="input-footer">
+            <div class="input-footer-buttons">
+              <button type="button" class="assist-draft-button" id="btn-ai-draft">AI Coach</button>
+              <button type="button" class="send-button" id="btn-send">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="extra-panel">
+        <div class="extra-panel-label">Task Context</div>
+        <pre id="task-summary" class="extra-content"></pre>
+      </div>
+
+      <div class="control-section">
+        <label class="section-label">System Status</label>
+        <div class="status-display" id="status-display">
+          <span class="status-spinner" id="status-spinner" aria-hidden="true"></span>
+          <span id="status-label-text">Waiting for session…</span>
+        </div>
+        <div class="progress-status" id="progress-status">The system will show active workflow progress here.</div>
+
+        <label class="section-label">Role Flow</label>
+        <div id="role-flow" class="role-flow">
+          <div class="no-active-nodes">No workflow loaded</div>
+        </div>
+
+        <div class="button-section">
+          <button class="launch-button" id="btn-launch">Run / Continue</button>
+          <button class="study-hub-button" id="btn-return-hub-2">Return to Study Hub</button>
+        </div>
+        <div id="inline-notices" class="inline-notices"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="agent-detail-modal" class="agent-detail-modal" style="display:none">
+    <div class="agent-detail-backdrop" id="agent-detail-backdrop"></div>
+    <div class="agent-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="agent-detail-title">
+      <div class="agent-detail-top">
+        <div>
+          <div class="section-label">Agent Workflow</div>
+          <div id="agent-detail-title" class="agent-detail-title">Agent Detail</div>
+          <div id="agent-detail-meta" class="agent-detail-meta"></div>
+        </div>
+        <button type="button" class="agent-detail-close" id="agent-detail-close" aria-label="Close detailed agent workflow">Close</button>
+      </div>
+      <div id="agent-detail-body" class="agent-detail-body"></div>
+    </div>
+  </div>
+
+  <div id="file-viewer-modal" class="agent-detail-modal" style="display:none">
+    <div class="agent-detail-backdrop" id="file-viewer-backdrop"></div>
+    <div class="agent-detail-dialog file-viewer-dialog" role="dialog" aria-modal="true" aria-labelledby="file-viewer-title">
+      <div class="agent-detail-top">
+        <div>
+          <div class="section-label">Code File</div>
+          <div id="file-viewer-title" class="agent-detail-title">File Viewer</div>
+          <div id="file-viewer-meta" class="agent-detail-meta"></div>
+        </div>
+        <button type="button" class="agent-detail-close" id="file-viewer-close" aria-label="Close file viewer">Close</button>
+      </div>
+      <pre id="file-viewer-content" class="agent-detail-pre file-viewer-content"></pre>
+    </div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
