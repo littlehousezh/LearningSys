@@ -255,7 +255,7 @@ Compress-Archive -Path data\study_sessions.db, <your_custom_workspace_folder> -D
 
 ### 9. Submit the Zip to the Instructor
 
-This project does not currently include an in-app submission feature. Students should upload the zip file using whatever submission method the instructor specifies.
+This project does not currently include an in-app submission feature. Students should upload the zip file using to https://vanderbilt365-my.sharepoint.com/:f:/g/personal/zihan_fang_vanderbilt_edu/IgBguYeYRe2LTKZeuU7xcUBIAT9cgRaHhLfhyNup3W5x1zU?e=Ylhj43
 
 ## Troubleshooting
 
